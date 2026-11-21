@@ -36,6 +36,7 @@ jobs:
     name: the dev container builds and its tools match the pins
     runs-on: ubuntu-latest
     timeout-minutes: 60
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
