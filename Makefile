@@ -44,7 +44,7 @@ FUZZTIME ?= 30s
 SOAKTIME ?= 2m
 
 # Internal targets: help check-index
-.PHONY: all help check-index ci-local ci-local-check fmt vet test coverage fuzz soak build server man site md-check md-format vectors vectors-check demo-check diagrams diagrams-check e2e clean parity parity-rust differential wasm wasm-check wasi-check wasm-budget ts-test jvm-test jvm-native rust-test grpc-test grpc-check freighter-check openapi-test openapi-check action-test
+.PHONY: all help check-index audit ci-local ci-local-check fmt vet test coverage fuzz soak build server man site md-check md-format vectors vectors-check demo-check diagrams diagrams-check e2e clean parity parity-rust differential wasm wasm-check wasi-check wasm-budget ts-test jvm-test jvm-native rust-test grpc-test grpc-check freighter-check openapi-test openapi-check action-test
 
 define CI_CHECK_INDEX
 Required: ci / vet and test
@@ -66,6 +66,8 @@ Required: ci / contracts build and test (cwd: e2e/contracts)
 Required: security / codeql and dependency review
 	CodeQL security-and-quality analysis; build command: go build ./...
 	GitHub dependency-review action; fail on high-severity advisories
+Required: security / supply chain scan
+	./scripts/supply-chain-scan.sh origin/main HEAD
 Advisory: ci / go
 	make coverage; cross-compile release targets; make fuzz; make soak
 	go test -run '^$$' -bench . -benchmem -count=1 .; scripts/checkbench
@@ -109,6 +111,7 @@ help:
 	@echo "  make fmt           fail if any Go file is not gofmt-clean"
 	@echo "  make vet           go vet ./..."
 	@echo "  make test          go test ./..."
+	@echo "  make audit         run the supply-chain scan"
 	@echo "  make ci-local      run everything CI runs, in CI's order (skips are listed with their reason; CI_LOCAL_FLAGS=-strict fails on them)"
 	@echo "  make ci-local-check  fail if a workflow job or step is not classified in scripts/cilocal/manifest.json"
 	@echo "  make coverage      measure coverage and enforce the per-package floors"
@@ -165,6 +168,9 @@ vet:
 
 test:
 	$(GO) test ./...
+
+audit:
+	./scripts/supply-chain-scan.sh origin/main HEAD
 
 # The thorough counterpart to `make`: everything CI runs, in CI's order, with
 # the commands CI uses. scripts/cilocal reads the `run:` steps out of

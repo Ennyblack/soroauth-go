@@ -39,6 +39,12 @@ jobs:
           fi
       - name: vet
         run: go vet ./...
+      - name: check mutable action references
+        run: |
+          if grep -rn --include='*.yml' -E 'uses: .+/.*@v[0-9]' .github/workflows/; then
+            echo "::error::Found mutable action references using tags instead of pinned commit SHAs."
+            exit 1
+          fi
       # The e2e files sit behind a build tag, so `go vet ./...` never
       # compiles them. Two breakages reached main through that gap: a
       # deploy helper calling a txnbuild function that does not exist, and

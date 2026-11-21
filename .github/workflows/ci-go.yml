@@ -73,7 +73,7 @@ jobs:
       - name: check per-package floors
         run: go run ./scripts/checkcov coverage.out testdata/coverage/floors.json packages.txt
       - name: publish coverage
-        uses: codecov/codecov-action@v7
+        uses: codecov/codecov-action@1e82989679b36d83ef314a43b236113b290d238f # v7
         with:
           files: ./coverage.out
           fail_ci_if_error: false
