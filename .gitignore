@@ -13,6 +13,7 @@
 # Node (golden-vector generator, typescript wrapper)
 node_modules/
 .tools/
+bindings/node/prebuilds/
 
 # Rust (e2e test contract)
 target/
