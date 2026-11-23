@@ -28,7 +28,8 @@ permissions:
 
 jobs:
   wasm:
-    name: wasm build and verify
+    name: wasm build and test
+    timeout-minutes: 20
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:

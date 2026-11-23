@@ -27,7 +27,8 @@ permissions:
 
 jobs:
   freighter:
-    name: freighter wallet extension adapter
+    name: freighter wallet adapter
+    timeout-minutes: 20
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
