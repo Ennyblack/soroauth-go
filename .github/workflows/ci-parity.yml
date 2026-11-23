@@ -60,8 +60,9 @@ jobs:
   # must regenerate from the pinned JS SDK unchanged, or the committed evidence
   # no longer says what it claims to.
   js-drift:
-    name: js sdk vector drift
+    name: javascript sdk parity
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
@@ -95,6 +96,7 @@ jobs:
   python-parity:
     name: python sdk parity
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       # The runner's system python is used on purpose: the harness pins the one
@@ -110,8 +112,9 @@ jobs:
           python3 testdata/parity-python/test_parity.py
 
   rust-parity:
-    name: rust xdr parity
+    name: rust sdk parity
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       # Cache the Rust toolchain and Cargo registry for the parity harness.
@@ -146,8 +149,9 @@ jobs:
   # harness then have to reproduce every one. All three agreeing is the claim;
   # any disagreement is a release blocker. See testdata/differential/README.md.
   differential:
-    name: differential fuzzing (go, js, python)
+    name: differential fuzzing harness
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7
