@@ -3,7 +3,7 @@
 ## Unreleased
 
 - Fix #664, #661 and #662: chore: a make target for the supply-chain scan (+2
-  more) (#664)
+  more) (#664, #661, #662)
 
 All notable changes to this project will be documented in this file.
 
