@@ -29,6 +29,7 @@ permissions:
 jobs:
   guard:
     name: refuse to proceed off a version tag
+    timeout-minutes: 20
     runs-on: ubuntu-latest
     steps:
       - name: enforce tag ref

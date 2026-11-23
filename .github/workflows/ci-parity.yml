@@ -55,12 +55,9 @@ permissions:
   contents: read
 
 jobs:
-  # The JS drift check. It is in this matrix rather than repeated here from
-  # ci.yml because this job's audience is the parity story: the golden vectors
-  # must regenerate from the pinned JS SDK unchanged, or the committed evidence
-  # no longer says what it claims to.
   js-drift:
     name: javascript sdk parity
+    timeout-minutes: 20
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
