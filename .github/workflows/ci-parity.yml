@@ -59,7 +59,6 @@ jobs:
     name: javascript sdk parity
     timeout-minutes: 20
     runs-on: ubuntu-latest
-    timeout-minutes: 20
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
@@ -92,8 +91,8 @@ jobs:
 
   python-parity:
     name: python sdk parity
-    runs-on: ubuntu-latest
     timeout-minutes: 20
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       # The runner's system python is used on purpose: the harness pins the one
@@ -110,8 +109,8 @@ jobs:
 
   rust-parity:
     name: rust sdk parity
-    runs-on: ubuntu-latest
     timeout-minutes: 20
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       # Cache the Rust toolchain and Cargo registry for the parity harness.
@@ -147,8 +146,8 @@ jobs:
   # any disagreement is a release blocker. See testdata/differential/README.md.
   differential:
     name: differential fuzzing harness
-    runs-on: ubuntu-latest
     timeout-minutes: 15
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7

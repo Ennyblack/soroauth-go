@@ -108,6 +108,7 @@ jobs:
   # bytes differ".
   reproduce-wasm:
     name: rebuild wasm and compare its digest
+    timeout-minutes: 20
     runs-on: ubuntu-latest
     steps:
       - name: resolve the release tag

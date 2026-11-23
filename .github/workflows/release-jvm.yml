@@ -55,6 +55,7 @@ jobs:
   native:
     name: build native library (${{ matrix.target }})
     needs: guard
+    timeout-minutes: 20
     strategy:
       fail-fast: false
       matrix:
@@ -99,6 +100,7 @@ jobs:
   deploy:
     name: sign and publish to Central
     needs: native
+    timeout-minutes: 20
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && github.ref_type == 'tag' && startsWith(github.ref_name, 'v')
     environment:
