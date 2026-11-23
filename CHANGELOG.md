@@ -10,10 +10,9 @@ this project adheres to
 
 ### Added
 
-- Add a `timeout-minutes` configuration to every CI and release workflow job, and enforce via a meta-check that any workflow job added without one fails the build. (#663)
-
-
-### Added
+- Add a `timeout-minutes` configuration to every CI and release workflow job,
+  and enforce via a meta-check that any workflow job added without one fails the
+  build. (#663)
 
 - Add a per-caller token-bucket rate limit to the verification service, checked
   before the body is read and before a concurrency slot is taken. A refusal is
