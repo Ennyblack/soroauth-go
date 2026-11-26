@@ -128,6 +128,7 @@ rather than across several documents. Run `make help` for the list.
 | `make e2e`           | builds the test contract with `stellar-cli` and runs `go test -tags e2e -v ./e2e/...`                 |
 | `make parity`        | installs the pinned Python SDK into `.venv-parity` and runs the parity harness and its tests          |
 | `make parity-rust`   | runs the Rust stellar-xdr parity harness and its tests (needs Rust 1.93.0)                            |
+| `make host-probe`    | runs the real Soroban host against delegate trees and asserts the limits in `docs/host-rules.md`      |
 | `make differential`  | regenerates the differential fuzzing corpus and checks it with the Go, JS and Python implementations  |
 | `make wasm`          | builds the js/wasm signing core to `wasm/dist/`                                                       |
 | `make wasm-check`    | builds the wasm core and replays every golden vector through it                                       |
@@ -291,6 +292,13 @@ version in a trailing comment, e.g. `actions/checkout@3d3c42e… # v7`, never a
 mutable tag like `@v7`. A major-version tag can be retagged to point at a
 different commit; pinning to the SHA means a compromised or retagged action
 cannot silently start running with this repository's CI permissions.
+
+`TestWorkflowActionsArePinnedBySHA` in
+[`internal/doccheck/workflows_test.go`](internal/doccheck/workflows_test.go)
+enforces this: any remote reference without a 40-character SHA and a `# vX.Y.Z`
+comment fails `go test ./...` with the workflow file and line named. Local `./…`
+actions and reusable workflows are exempt, since they resolve to this
+repository's own checkout.
 
 Dependabot (`.github/dependabot.yml`) watches the `github-actions` ecosystem and
 opens a PR updating both the SHA and its version comment together when a new
