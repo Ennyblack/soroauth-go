@@ -1,4 +1,4 @@
-package cilocal
+package main
 
 import (
 	"os"
