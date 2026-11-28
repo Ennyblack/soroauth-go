@@ -21,7 +21,7 @@ func TestManifestAccountsForEveryWorkflow(t *testing.T) {
 		"../../.github/workflows/ci.yml",
 		"../../.github/workflows/ci-adapters.yml",
 		"../../.github/workflows/ci-devcontainer.yml",
-		"../../.github/workflows/ci-e2e.yml",
+		"../../.github/workflows/e2e.yml",
 		"../../.github/workflows/security.yml",
 	} {
 		content, err := os.ReadFile(workflowPath)
